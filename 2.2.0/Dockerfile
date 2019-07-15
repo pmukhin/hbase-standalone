@@ -6,12 +6,12 @@ RUN pip install supervisor-stdout
 RUN mkdir -p /var/log/supervisor
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-ENV VERSION hbase-2.0.0-beta-1
+ENV VERSION 2.2.0
 ENV DESTINATION /opt/hbase
 
-ADD http://archive.apache.org/dist/hbase/${VERSION}/${VERSION}-bin.tar.gz /
-RUN tar -xvf ${VERSION}-bin.tar.gz 
-RUN mv /${VERSION} ${DESTINATION}
+ADD http://archive.apache.org/dist/hbase/${VERSION}/hbase-${VERSION}-bin.tar.gz /hbase-${VERSION}-bin.tar.gz
+RUN tar -xvf hbase-${VERSION}-bin.tar.gz 
+RUN mv /hbase-${VERSION} ${DESTINATION}
 ADD hbase-site.xml /${DESTINATION}/conf/hbase-site.xml
 
 # Folder for data
